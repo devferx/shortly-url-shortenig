@@ -32,7 +32,7 @@ function App() {
 
           @media screen and (min-width: 768px) {
             .wrapper {
-              padding: 0px 40px;
+              padding: 0px 12%;
               max-width: 1440px;
               margin: auto;
             }

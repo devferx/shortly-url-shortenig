@@ -30,6 +30,7 @@ const Nav = styled.nav`
 
   @media screen and (min-width: 768px) {
     justify-content: flex-start;
+    margin-top: 30px;
     .menu {
       display: none;
     }
@@ -113,6 +114,7 @@ const Links = styled.ul`
       margin-right: 10px;
       margin-top: 0;
       cursor: pointer;
+      font-weight: bold;
     }
 
     .user-actions {
@@ -120,6 +122,7 @@ const Links = styled.ul`
       border-top: none;
       justify-content: flex-end;
       width: 20%;
+      font-weight: bold;
     }
 
     .button {
