@@ -1,5 +1,6 @@
 import React from "react";
 import { css, Global } from "@emotion/core";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
@@ -23,8 +24,15 @@ function App() {
             color: var(--rojito);
             font-size: 18px;
           }
+
+          .wrapper {
+            padding: 0px 1em;
+            box-sizing: border-box;
+          }
         `}
       />
+      <Navbar />
+      <h1>ESte es un contenido maravilloso</h1>
     </div>
   );
 }
