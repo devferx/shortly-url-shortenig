@@ -19,9 +19,14 @@ const Header = styled.header`
       font-size: 4rem;
     }
 
-    p{
+    p {
       text-align: left;
       color: var(--grayishViolet);
+      justify-content: flex-end;
+    }
+
+    button {
+      width: 30%;
     }
   }
 `;
@@ -48,6 +53,13 @@ const HeaderPrincipal = () => {
           box-sizing: border-box;
           @media screen and (min-width: 768px) {
             margin-left: 10%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            h1 {
+              margin-bottom: 10px;
+            }
           }
         `}
       >
