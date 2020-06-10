@@ -26,6 +26,12 @@ const Nav = styled.nav`
     font-size: 2em;
     user-select: none;
   }
+
+  @media screen and (min-width: 768px){
+    .menu {
+      display: none;
+    }
+  }
 `;
 
 const Links = styled.ul`
@@ -47,7 +53,7 @@ const Links = styled.ul`
   padding:0;
 
   li{
-    margin-bottom: 12px;
+    margin-top: 12px; 
   }
 
   hr {
@@ -66,6 +72,14 @@ const Links = styled.ul`
     font-weight: 700;
     margin-bottom: 10px;
   }
+
+  .user-actions{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 1px solid var(--grayishViolet);
+  }
 `;
 
 const Navbar = () => {
@@ -83,12 +97,13 @@ const Navbar = () => {
         name="checkbox"
       />
       <Links className="links">
-        <li>Features</li>
-        <li>Pricing</li>
-        <li>Resources</li>
-        <hr/>
+        <li className="link">Features</li>
+        <li className="link">Pricing</li>
+        <li className="link">Resources</li>
+        <div className="user-actions">
         <li>Login</li>
         <button className="button">Sign Up</button>
+        </div>
       </Links>
     </Nav>
   );
