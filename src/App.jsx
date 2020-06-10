@@ -1,6 +1,6 @@
 import React from "react";
 import { css, Global } from "@emotion/core";
-import Navbar from "./components/Navbar";
+import Principal from "./containers/Principal";
 
 function App() {
   return (
@@ -21,7 +21,6 @@ function App() {
             margin: 0;
             font-family: "Poppins", sans-serif;
             font-weight: 500;
-            color: var(--rojito);
             font-size: 18px;
           }
 
@@ -39,8 +38,7 @@ function App() {
           }
         `}
       />
-      <Navbar />
-      <h1>ESte es un contenido maravilloso</h1>
+      <Principal />
     </div>
   );
 }

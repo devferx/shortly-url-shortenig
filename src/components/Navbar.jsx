@@ -2,6 +2,7 @@ import React from "react";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Logo from "../assets/images/logo.svg";
+import Button from "./Button";
 
 const Nav = styled.nav`
   position: relative;
@@ -64,21 +65,6 @@ const Links = styled.ul`
     height: 1px;
   }
 
-  .button {
-    border: none;
-    color: white;
-    width: 100%;
-    margin-top: 1em;
-    padding: 1em 0px;
-    border-radius: 100px;
-    outline:none;
-    cursor:pointer;
-    background-color: var(--cyan);
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
   .links-container {
     display: flex;
     flex-direction: column;
@@ -124,12 +110,6 @@ const Links = styled.ul`
       width: 20%;
       font-weight: bold;
     }
-
-    .button {
-      margin-left: 1rem;
-      width: 150px;
-      height: 50%;
-    }
   }
 `;
 
@@ -162,7 +142,22 @@ const Navbar = () => {
           >
             Login
           </li>
-          <button className="button">Sign Up</button>
+          <Button
+            css={css`
+              width: 100%;
+              margin-top: 1em;
+              padding: 1em 0px;
+              margin-bottom: 10px;
+
+              @media screen and (min-width: 768px) {
+                margin-left: 1rem;
+                width: 150px;
+                height: 50%;
+              }
+            `}
+          >
+            Sign Up
+          </Button>
         </div>
       </Links>
     </Nav>
