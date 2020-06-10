@@ -1,4 +1,5 @@
 import React from "react";
+import { css } from "@emotion/core";
 import styled from "@emotion/styled";
 import Logo from "../assets/images/logo.svg";
 
@@ -27,7 +28,8 @@ const Nav = styled.nav`
     user-select: none;
   }
 
-  @media screen and (min-width: 768px){
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
     .menu {
       display: none;
     }
@@ -50,10 +52,10 @@ const Links = styled.ul`
   justify-content: space-evenly;
   color: white;
   list-style: none;
-  padding:0;
+  padding: 0;
 
-  li{
-    margin-top: 12px; 
+  li {
+    margin-top: 12px;
   }
 
   hr {
@@ -61,24 +63,70 @@ const Links = styled.ul`
     height: 1px;
   }
 
-  .button{
+  .button {
     border: none;
     color: white;
-    width: 80%;
+    width: 100%;
+    margin-top: 1em;
     padding: 1em 0px;
     border-radius: 100px;
+    outline:none;
+    cursor:pointer;
     background-color: var(--cyan);
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     margin-bottom: 10px;
   }
 
-  .user-actions{
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .user-actions {
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-top: 1px solid var(--grayishViolet);
+  }
+
+  @media screen and (min-width: 768px) {
+    position: static;
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--gray);
+    height: auto;
+    margin: 0px;
+    margin-left: 1em;
+
+    .links-container {
+      flex-direction: row;
+    }
+
+    .link {
+      margin-right: 10px;
+      margin-top: 0;
+      cursor: pointer;
+    }
+
+    .user-actions {
+      flex-direction: row;
+      border-top: none;
+      justify-content: flex-end;
+      width: 20%;
+    }
+
+    .button {
+      margin-left: 1rem;
+      width: 150px;
+      height: 50%;
+    }
   }
 `;
 
@@ -97,12 +145,21 @@ const Navbar = () => {
         name="checkbox"
       />
       <Links className="links">
-        <li className="link">Features</li>
-        <li className="link">Pricing</li>
-        <li className="link">Resources</li>
+        <div className="links-container">
+          <li className="link">Features</li>
+          <li className="link">Pricing</li>
+          <li className="link">Resources</li>
+        </div>
+
         <div className="user-actions">
-        <li>Login</li>
-        <button className="button">Sign Up</button>
+          <li
+            css={css`
+              cursor: pointer;
+            `}
+          >
+            Login
+          </li>
+          <button className="button">Sign Up</button>
         </div>
       </Links>
     </Nav>

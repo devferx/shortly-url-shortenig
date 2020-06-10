@@ -29,6 +29,14 @@ function App() {
             padding: 0px 1em;
             box-sizing: border-box;
           }
+
+          @media screen and (min-width: 768px) {
+            .wrapper {
+              padding: 0px 40px;
+              max-width: 1440px;
+              margin: auto;
+            }
+          }
         `}
       />
       <Navbar />
