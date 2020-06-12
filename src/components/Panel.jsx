@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { css } from "@emotion/core";
 import styled from "@emotion/styled";
+import LinkList from "./LinkList";
+import Button from "./Button";
 import bgMobile from "../assets/images/bg-shorten-mobile.svg";
 import bgDesktop from "../assets/images/bg-shorten-desktop.svg";
-import Button from "./Button";
 
 const Box = styled.form`
   background: url(${bgMobile}), var(--darkViolet);
@@ -67,31 +68,46 @@ const Box = styled.form`
       grid-area: button;
     }
 
-    .label{
+    .label {
       grid-area: label;
     }
   }
 `;
 
 const Panel = () => {
+  const [links, setLinks] = useState([
+    {
+      original: "https://rel.ink/",
+      shortLink: "https://rel.ink/MnKbVk",
+    },
+    {
+      original: "https://rel.ink/",
+      shortLink: "https://rel.ink/MnKbVk",
+    },
+    {
+      original: "https://rel.ink/",
+      shortLink: "https://rel.ink/MnKbVk",
+    },
+  ]);
+
   return (
-    <Box>
-      <input
-        name="link"
-        type="text"
-        placeholder="Shorten a link here..."
-      />
-      <p className="label">Please add a link</p>
-      <Button
-        css={css`
-          border-radius: 8px;
-          padding: 10px;
-        `}
-        type="submit"
-      >
-        Shorten It!
-      </Button>
-    </Box>
+    <>
+      <Box>
+        <input name="link" type="text" placeholder="Shorten a link here..." />
+        <p className="label">Please add a link</p>
+        <Button
+          css={css`
+            border-radius: 8px;
+            padding: 10px;
+          `}
+          type="submit"
+        >
+          Shorten It!
+        </Button>
+      </Box>
+
+      <LinkList links={links} />
+    </>
   );
 };
 
