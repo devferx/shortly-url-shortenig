@@ -75,25 +75,43 @@ const Box = styled.form`
 `;
 
 const Panel = () => {
-  const [links, setLinks] = useState([
-    {
-      original: "https://rel.ink/",
-      shortLink: "https://rel.ink/MnKbVk",
-    },
-    {
-      original: "https://rel.ink/",
-      shortLink: "https://rel.ink/MnKbVk",
-    },
-    {
-      original: "https://rel.ink/",
-      shortLink: "https://rel.ink/MnKbVk",
-    },
-  ]);
+  const [userValue, setUserValue] = useState("");
+  const [links, setLinks] = useState([]);
+
+  const handleChange = (event) => {
+    setUserValue(event.target.value);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await fetch("https://rel.ink/api/links/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: userValue }),
+    });
+
+    const data = await response.json();
+    const newLink = {
+      original: userValue,
+      shortLink: `https://rel.ink/${data.hashid}`,
+    };
+    setLinks([newLink, ...links]);
+    setUserValue("");
+  };
 
   return (
     <>
-      <Box>
-        <input name="link" type="text" placeholder="Shorten a link here..." />
+      <Box onSubmit={handleSubmit}>
+        <input
+          name="link"
+          type="text"
+          onChange={handleChange}
+          value={userValue}
+          placeholder="Shorten a link here..."
+        />
         <p className="label">Please add a link</p>
         <Button
           css={css`
