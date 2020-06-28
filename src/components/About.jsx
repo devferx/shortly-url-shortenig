@@ -6,7 +6,6 @@ const AboutSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 50px;
 
   h2 {
    color: var(--veryDarkBlue); 
@@ -15,6 +14,10 @@ const AboutSection = styled.section`
   p {
     color: var(--grayishViolet);
     text-align: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding-bottom: 2em;
   }
 `;
 
