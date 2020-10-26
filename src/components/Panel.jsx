@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
-import { css } from '@emotion/core';
-import styled from '@emotion/styled';
-import LinkList from './LinkList';
-import Button from './Button';
-import bgMobile from '../assets/images/bg-shorten-mobile.svg';
-import bgDesktop from '../assets/images/bg-shorten-desktop.svg';
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import { css } from "@emotion/core";
+import styled from "@emotion/styled";
+import LinkList from "./LinkList";
+import Button from "./Button";
+import bgMobile from "../assets/images/bg-shorten-mobile.svg";
+import bgDesktop from "../assets/images/bg-shorten-desktop.svg";
 
 const Box = styled.form`
   background: url(${bgMobile}), var(--darkViolet);
@@ -25,7 +26,7 @@ const Box = styled.form`
     padding-left: 10px;
     box-sizing: border-box;
     outline: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
   }
 
   .active {
@@ -53,8 +54,8 @@ const Box = styled.form`
     grid-template-columns: 1fr 20%;
     grid-template-rows: auto auto;
     grid-template-areas:
-      'input button'
-      'label .';
+      "input button"
+      "label .";
     column-gap: 10px;
     padding: 1.5em;
 
@@ -75,7 +76,7 @@ const Box = styled.form`
 `;
 
 const Panel = () => {
-  const [userValue, setUserValue] = useState('');
+  const [userValue, setUserValue] = useState("");
   const [links, setLinks] = useState([]);
   const input = useRef();
   const alert = useRef();
@@ -87,35 +88,33 @@ const Panel = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (userValue === '') {
-      input.current.classList.add('active');
-      alert.current.classList.add('label-active');
+    if (userValue === "") {
+      input.current.classList.add("active");
+      alert.current.classList.add("label-active");
       return;
     }
 
     try {
-      const response = await fetch('https://rel.ink/api/links/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url: userValue }),
-      });
+      const data = await axios.post(
+        "https://cors-anywhere.herokuapp.com/https://cleanuri.com/api/v1/shorten",
+        { url: userValue }
+      );
+      setUserValue("Loading ...");
 
-      if (input.current.classList.contains('active')) {
-        input.current.classList.remove('active');
-        alert.current.classList.remove('label-active');
+      if (input.current.classList.contains("active")) {
+        input.current.classList.remove("active");
+        alert.current.classList.remove("label-active");
       }
 
-      const data = await response.json();
       const newLink = {
         original: userValue,
-        shortLink: `https://rel.ink/${data.hashid}`,
+        shortLink: data.data.result_url,
       };
       setLinks([newLink, ...links]);
-      setUserValue('');
+      setUserValue("");
     } catch (error) {
-      alert('Algo salio mal');
+      console.log(error);
+      window.alert("Algo salio mal :(");
     }
   };
 
