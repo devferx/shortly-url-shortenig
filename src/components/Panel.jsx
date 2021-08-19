@@ -95,9 +95,8 @@ const Panel = () => {
     }
 
     try {
-      const data = await axios.post(
-        "https://cors-anywhere.herokuapp.com/https://cleanuri.com/api/v1/shorten",
-        { url: userValue }
+      const { data } = await axios.get(
+        `https://api.shrtco.de/v2/shorten?url=${userValue}`
       );
       setUserValue("Loading ...");
 
@@ -108,7 +107,7 @@ const Panel = () => {
 
       const newLink = {
         original: userValue,
-        shortLink: data.data.result_url,
+        shortLink: data.result.full_short_link,
       };
       setLinks([newLink, ...links]);
       setUserValue("");
